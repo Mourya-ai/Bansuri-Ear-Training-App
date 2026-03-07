@@ -202,8 +202,8 @@ function useProgress() {
 const NOTE_NAMES_FILE = ["C","Cs","D","Ds","E","F","Fs","G","Gs","A","As","B"];
 
 const SAPTAK_CONFIG = {
-  middle: { label:"Middle", hindi:"Madhya Saptak", baseOctave: 4 },
-  bass:   { label:"Bass",   hindi:"Mandra Saptak", baseOctave: 3 },
+  middle: { label:"Middle", hindi:"Madhya Saptak", baseOctave: 5 },
+  bass:   { label:"Bass",   hindi:"Mandra Saptak", baseOctave: 4 },
 };
 
 function getAudioFile(saIndex, semitoneOffset, saptak = "middle") {
