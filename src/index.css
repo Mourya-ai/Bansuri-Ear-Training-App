@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
+
+:root {
+  --gold:     #d4af37;
+  --gold-dim: #a88d2c;
+  --cream:    #f5f0e8;
+  --bg:       #0d0d1a;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: #0a0a14;
+  font-family: 'Playfair Display', serif;
+  color: var(--cream);
+  /* Rich ambient glow behind everything */
+  background-image:
+    radial-gradient(ellipse at 80% 10%, rgba(212,175,55,0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 10% 90%, rgba(100,60,200,0.07) 0%, transparent 50%);
+  min-height: 100vh;
+}
+
+button {
+  font-family: 'Playfair Display', serif;
+  cursor: pointer;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.2); border-radius: 99px; }
+
+@keyframes wave {
+  from { transform: scaleY(0.4); }
+  to   { transform: scaleY(1.6); }
+}
+
+/* Tap highlight removed on mobile */
+* { -webkit-tap-highlight-color: transparent; }
