@@ -18,24 +18,28 @@ const SARGAM_FULL = [
   { sargam: "Dha",       semitone: 9,  komal: false },
   { sargam: "Komal Ni",  semitone: 10, komal: true  },
   { sargam: "Ni",        semitone: 11, komal: false },
-  { sargam: "Sa'",       semitone: 12, komal: false },
 ];
 
 const DIFFICULTY_NOTES = {
-  beginner:     [0,2,4,5,7],
-  intermediate: [0,2,4,5,7,9,11,12],
-  advanced:     [0,1,2,3,4,5,6,7,8,9,10,11,12],
+  beginner:     [0, 2, 4, 5, 7, 9, 11, 12],
+  intermediate: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  advanced:     [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
 };
 
 function getWesternNote(saIndex, semitoneOffset) {
-  const idx = (saIndex + semitoneOffset) % 12;
+  const idx = ((saIndex + semitoneOffset) % 12 + 12) % 12;
   return SCALES[idx];
 }
 
-function getNoteLabel(saIndex, semitone) {
-  const note = SARGAM_FULL.find(n => n.semitone === semitone % 12 || (semitone === 12 && n.sargam === "Sa'"));
-  const western = getWesternNote(saIndex, semitone % 12);
-  return { sargam: note?.sargam || "Sa'", western, komal: note?.komal || false };
+function getNoteLabel(saIndex, semitoneOffset) {
+  const degree      = ((semitoneOffset % 12) + 12) % 12;
+  const octaveShift = Math.floor(semitoneOffset / 12);
+  const note        = SARGAM_FULL.find(n => n.semitone === degree);
+  const western     = getWesternNote(saIndex, semitoneOffset);
+  let sargam = note?.sargam || "Sa";
+  if (octaveShift < 0)      sargam = "L. " + sargam;
+  else if (octaveShift > 0) sargam = "H. " + sargam;
+  return { sargam, western, komal: note?.komal || false };
 }
 
 // ─── PROGRESS HOOK (localStorage) ────────────────────────────────────────────
