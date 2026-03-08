@@ -450,6 +450,12 @@ function HomeScreen({ onNavigate, selectedScale, onSelectScale, selectedSaptak, 
           </button>
         ))}
       </div>
+      <a href="/privacy.html"
+        target="_blank"
+        style={{ display:"block", textAlign:"center", marginTop:16,
+          fontSize:11, color:"rgba(255,255,255,0.2)", textDecoration:"none" }}>
+        Privacy Policy
+      </a>
     </div>
   );
 }
