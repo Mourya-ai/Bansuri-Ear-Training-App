@@ -211,30 +211,11 @@ const SAPTAK_CONFIG = {
 };
 
 // function getAudioFile(saIndex, semitoneOffset, saptak = "middle") {
-//   const saBaseOctave = SAPTAK_CONFIG[saptak].baseOctave;
-//   const absoluteNote = saIndex + saBaseOctave * 12 + semitoneOffset;
-//   const noteName     = NOTE_NAMES_FILE[absoluteNote % 12];
-//   const noteOctave   = Math.floor(absoluteNote / 12);
-//   return `/audio/${noteName}${noteOctave}.m4a`;
-// }
-
-// For multiple file types with fallback (mp3 → m4a)
-function getAudioFile(saIndex, semitoneOffset, saptak = "middle") {
   const saBaseOctave = SAPTAK_CONFIG[saptak].baseOctave;
   const absoluteNote = saIndex + saBaseOctave * 12 + semitoneOffset;
   const noteName     = NOTE_NAMES_FILE[absoluteNote % 12];
   const noteOctave   = Math.floor(absoluteNote / 12);
-  const basePath     = `/audio/${noteName}${noteOctave}`;
-
-  return new Promise((resolve, reject) => {
-    const audio = new Audio(`${basePath}.mp3`);
-    audio.addEventListener("error", () => {
-      audio.src = `${basePath}.m4a`;
-      audio.addEventListener("error", reject, { once: true });
-      audio.addEventListener("canplaythrough", () => resolve(audio), { once: true });
-    }, { once: true });
-    audio.addEventListener("canplaythrough", () => resolve(audio), { once: true });
-  });
+  return `/audio/${noteName}${noteOctave}.mp3`;
 }
 
 // Preloaded audio cache so taps feel instant
