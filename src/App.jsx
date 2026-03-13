@@ -210,7 +210,7 @@ const SAPTAK_CONFIG = {
   bass:   { label:"Bass",   hindi:"Mandra Saptak", baseOctave: 4 },
 };
 
-// function getAudioFile(saIndex, semitoneOffset, saptak = "middle") {
+function getAudioFile(saIndex, semitoneOffset, saptak = "middle") {
   const saBaseOctave = SAPTAK_CONFIG[saptak].baseOctave;
   const absoluteNote = saIndex + saBaseOctave * 12 + semitoneOffset;
   const noteName     = NOTE_NAMES_FILE[absoluteNote % 12];
